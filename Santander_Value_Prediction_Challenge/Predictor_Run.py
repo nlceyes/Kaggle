@@ -3,9 +3,7 @@
 import time
 import numpy as np
 import pandas as pd
-import xgboost as xgb
 import lightgbm as lgb
-from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import mean_squared_log_error
 
@@ -75,9 +73,6 @@ train = train[leak_cols]
 test = test[leak_cols]
 
 # 建立模型并交叉验证
-# clf = RandomForestRegressor(random_state=0)
-# clf = RandomForestRegressor(random_state=0, max_features='auto', min_samples_split=4, n_estimators=250)
-# clf = lgb.LGBMRegressor(learning_rate=0.02, max_depth=7, feature_fraction=0.9, bagging_fraction=0.8, bagging_freq=5, n_estimators=100)
 clf = lgb.LGBMRegressor(learning_rate=0.02, min_child_samples=20, min_split_gain=0.2, n_estimators=150, num_leaves=15, subsample=0.6)
 print(clf)
 t0 = time.time()
