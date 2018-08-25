@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Leakage Method
+# Leakage Method with LGB Model
 import warnings
 warnings.filterwarnings('ignore')
 import time
@@ -11,7 +11,7 @@ t0 = time.time()
 # Loading Data
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
-# submit = pd.read_csv('LGB_pred_r5.csv') # Previous Submissions！
+submit = pd.read_csv('LGB_pred_r5.csv') # Previous Best Submissions！
 
 # Functions to be Defined
 def _get_leak(df, cols, extra_feats, lag=0):
@@ -164,8 +164,6 @@ test_leak = rewrite_compiled_leak(test_leak, best_lag)
 #
 test_res = test_leak[leaky_cols+['compiled_leak']].replace(0.0, np.nan)
 test_res.to_csv('test_leak.csv', index=False)
-test_leak.loc[test_leak["compiled_leak"]==0, "compiled_leak"] = test_leak.loc[test_leak["compiled_leak"]==0, "nonzero_mean"]
-sub = test[["ID"]]
-sub["target"] = test_leak["compiled_leak"]
-sub.to_csv(f"submission_with_leaks_ExtraFeatures.csv", index=False)
-print(f"submission_with_leaks_ExtraFeatures.csv saved")
+# test_leak.loc[test_leak["compiled_leak"]==0, "compiled_leak"] = test_leak.loc[test_leak["compiled_leak"]==0, "nonzero_mean"]
+submit["compiled_leak"]!=0, "target"] = test_leak.loc["compiled_leak"]!=0, "compiled_leak"]
+submit.to_csv("submission_with_leaks_ExtraFeatures_r2.csv", index=False)
