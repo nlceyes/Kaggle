@@ -56,12 +56,12 @@ if __name__ == '__main__':
 	t0 = time.time()
 	model = lgb.LGBMRegressor()
 	params = {	'boosting_type': ['gbdt'],
-				'num_leaves': [7, 15, 23, 31, 39, 47],
-				'learning_rate': [0.025, 0.02, 0.015, 0.01, 0.005],
-				'n_estimators': [100, 150, 200],
-				'min_split_gain': [0.0, 0.1, 0.2],
-				'min_child_samples': [10, 20, 30],
-				'subsample': [0.6, 0.7, 0.8, 0.9, 1.0]}
+			'num_leaves': [7, 15, 23, 31, 39, 47],
+			'learning_rate': [0.025, 0.02, 0.015, 0.01, 0.005],
+			'n_estimators': [100, 150, 200],
+			'min_split_gain': [0.0, 0.1, 0.2],
+			'min_child_samples': [10, 20, 30],
+			'subsample': [0.6, 0.7, 0.8, 0.9, 1.0]}
 	clf = GridSearchCV(model, params, cv=3, scoring='neg_mean_squared_error', n_jobs=1)
 	clf.fit(train, y_train_log)
 	means = clf.cv_results_['mean_test_score']
