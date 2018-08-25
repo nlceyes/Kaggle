@@ -33,9 +33,9 @@ print('Trainset Dropped Duplicated Features:', train.shape)
 
 # 基模型
 model_list = [	('RF', RandomForestRegressor(random_state=0)), 
-				('GB', GradientBoostingRegressor(random_state=0)), 
-				('XGB', xgb.XGBRegressor()), 
-				('LGB', lgb.LGBMRegressor())]
+		('GB', GradientBoostingRegressor(random_state=0)), 
+		('XGB', xgb.XGBRegressor()), 
+		('LGB', lgb.LGBMRegressor())]
 
 # 建立模型并交叉验证
 for id, clf in model_list:
