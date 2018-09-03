@@ -22,3 +22,7 @@ The method of feature engineering in LGBM model are also inspired by the followi
 	https://www.kaggle.com/alexpengxiao/preprocessing-model-averaging-by-xgb-lgb-1-39
 	
 	https://www.kaggle.com/the1owl/love-is-the-answer
+
+Flow Chart:
+	
+	_Test(Get Baseline Model) --> _CV(Parameter Tuning) --> _Run(LGBM Using Best Parameters) --> _Run_L(Leakage Method and Combination of Previous LGBM Model)
